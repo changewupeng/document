@@ -4,6 +4,18 @@
 
 ## mysql.server
 
+
+
+ 先通过my_print_defaults来解析/etc/my.cnf中的参数配置
+
+```
+my_print_defaults mysqld server mysql_server mysql.server
+```
+
+主要解析：datadir ，pid-file字段的位置。
+
+
+
 ### start
 
 mysqld_safe --datadir="$datadir" --pid-file="$mysqld_pid_file_path" $other_args >/dev/null &

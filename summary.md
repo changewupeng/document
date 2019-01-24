@@ -1,7 +1,7 @@
 # Summary
 
 * [简介](README.md)
-* [mysql安装](install/快速开始.md)
+* [mysql安装](install/mysql的安装.md)
     * [普通二进制文件安装](install/普通二进制文件安装.md)
     * [多实例单配置文件安装](install/多实例单配置文件安装.md)
     * [多实例多配置文件安装](install/多实例多配置文件安装.md)

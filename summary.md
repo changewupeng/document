@@ -37,5 +37,5 @@
     * [实际环境的搭建](replicate/experience.md)
 
 * [使用Jmeter对mysql进行压力测试](practice/使用Jmeter对mysql进行压力测试.md)
-
-
+* [mysql router](practice/mysqlrouter搭建.md)
+  

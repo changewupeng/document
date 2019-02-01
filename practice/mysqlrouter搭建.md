@@ -1,11 +1,10 @@
 # mysql router
 
-mysql router是一个在应用和mysql server之间轻量级的中间件，它可以通过有效地将数据库流量路由到适当的后端MySQL服务器来提供高可用性和可伸缩性，可拔插的架构也可以让开发人员扩展mysql router.
+MySQL Router是MySQL官方提供的一个轻量级中间件，可以在应用程序与MySQL服务器之间提供透明的路由方式。主要用以解决MySQL主从库集群的高可用、负载均衡、易扩展等问题。Router可以与MySQL Fabric无缝连接，允许Fabric存储和管理用于路由的高可用数据库服务器组，使管理MySQL服务器组更加简单。
 
-MySQL路由器是高可用性（HA）解决方案的构建块。它通过智能地将连接路由到MySQL服务器来简化应用程序开发，从而提高性能和可靠性。
-
-
-
+        MySQL Router是一个可执行文件，可以与应用程序在同一平台上运行，也可以单独部署。虽然MySQL Router是InnoDB Cluster（MySQL 7.X）的一部分，MySQL 5.6 等版本数据库仍然可以使用Router作为其中间代理层。MySQL Router的配置文件中包含有关如何执行路由的信息。它与MySQL服务器的配置文件类似，也是由多个段组成，每个段中包含相关配置选项。
+    
+        MySQL Router是MySQL Proxy的替代方案，MySQL官方不建议将MySQL Proxy用于生产环境，并且已经不提供MySQL Proxy的下载。
 ## 安装mysql router
 
 1.  去[官网](https://dev.mysql.com/downloads/router/)下载最新版本的mysql router。这里下载的二进制的文件：mysql-router-8.0.14-linux-glibc2.12-x86_64.tar.xz

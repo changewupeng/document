@@ -32,10 +32,11 @@
 
 * [mysql复制](replicate/replicate.md)
     * [基于binlog坐标](replicate/binlogpostion.md)
-    * [机遇GTIDs](replicate/gtids.md)
+    * [基于GTIDs](replicate/gtids.md)
+    * [多数据源复制](replicate/multiSourceReplicate.md)
     * [两者的比较](replicate/compare.md)
     * [实际环境的搭建](replicate/experience.md)
 
 * [使用Jmeter对mysql进行压力测试](practice/使用Jmeter对mysql进行压力测试.md)
 * [mysql router](practice/mysqlrouter搭建.md)
-  
+

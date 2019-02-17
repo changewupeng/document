@@ -159,3 +159,45 @@ start slave
 SET @@GLOBAL.read_only = OFF;
 ```
 
+
+
+
+
+# 使用GTID进行故障切换和水平扩展
+
+The easiest way to reproduce all identifiers and transactions on a new server is to make the new server into the slave of a master that has the entire execution history, and enable global transaction identifiers on both servers. See[Section 16.1.3.4, “Setting Up Replication Using GTIDs”](https://dev.mysql.com/doc/refman/5.7/en/replication-gtids-howto.html), for more information.
+
+Once replication is started, the new server copies the entire binary log from the master and thus obtains all information about all GTIDs.
+
+This method is simple and effective, but requires the slave to read the binary log from the master; it can sometimes take a comparatively long time for the new slave to catch up with the master, so this method is not suitable for fast failover or restoring from backup. This section explains how to avoid fetching all of the execution history from the master by copying binary log files to the new server.
+
+
+
+## 简单复制
+
+对于一个有完整执行记录历史的master而言，将一个新的server设置成slave最见简单的办法就是在复制开启之后，slave从master获取binlog日志并执行，因此slave会获取所有的GTID信息
+
+优点：简单，有效
+
+缺点：要求slave从master读取binlog日志，可能会花费比较长的时间。不适用于快速故障切换和从备份数据中恢复。
+
+
+
+## 向slave中拷贝数据和事务
+
+将一个源服务器上的数据快照，binlog和全局事务信息导入一个新slave。源服务器既可以是master也可以是slave.
+
+### 备份数据
+
+1. 使用mysqldump从源服务器上备份数据。有以下几个参数必须设置
+   - --master-data:包含一个binlog日志信息的change master to申明。
+   - --set-gtid-purged=[auto|on]:包含已经执行过的事务信息。
+
+2. 也可以将目标服务器和源服务器都停止。开启slave的gtid_mode,将源服务器的datadir里面的数据拷贝一份到目标服务器的datadir，然后启动slave即可。
+
+### 完整的事务历史
+
+前提： 拥有完整的事务历史在binlog中。（@@GLOBAL.gtid_purged为空）
+
+使用binlog从master上读取日志来本机执行。或者将master上的binlog日志拷贝下来，在本机执行。
+

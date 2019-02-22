@@ -26,11 +26,12 @@ MySQL Router是MySQL官方提供的一个轻量级中间件，可以在应用程
    
    [routing:basic_failover]
    bind_port = 7001
+   ##此处必须填写，不然默认监听的是本机的ip，无法在其它机器上访问
+   bind_address = 0.0.0.0
    max_connect_errors = 5
    max_connections = 2000
    routing_strategy = first-available
    destinations = 127.0.0.1:3308,127.0.0.1:3309
-   ##设置socket的文件的位置，在不使用tcp协议登录的时候
    socket = /home/mysql/scripts/mysqlrouter/mysqlrouter.sock
    
    [keepalive]
